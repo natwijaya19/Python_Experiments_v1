@@ -1,5 +1,5 @@
 # A magic command for Jupyter Notebook.
-#%%============================================================================
+# %%============================================================================
 from typing import Any
 
 
@@ -53,6 +53,4 @@ if __name__ == "__main__":
     print(order.total_price())
     print(order.status)
 
-
-#%%
-
+# %%

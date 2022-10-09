@@ -6,4 +6,3 @@ else:
     print("my_var1 is False")
 
 type(condition)
-

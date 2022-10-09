@@ -1,6 +1,6 @@
 # A magic command for Jupyter Notebook.
 # interface segregation by using  composition
-#%%============================================================================
+# %%============================================================================
 
 from typing import Any
 

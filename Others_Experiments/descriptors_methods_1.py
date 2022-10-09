@@ -14,7 +14,3 @@ if __name__ == "__main__":
     print(ClientClass.descriptor)
     client_object = ClientClass()
     print(client_object.descriptor)
-
-
-
-
