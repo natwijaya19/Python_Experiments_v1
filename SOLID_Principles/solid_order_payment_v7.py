@@ -5,6 +5,7 @@
 from typing import Any
 
 
+# define a class for Order
 class Order:
     # noinspection PyCompatibility
     items: list[Any] = []
@@ -42,19 +43,22 @@ class PaymentProcessorSMS(PaymentProcessor):
         pass
 
 
-class DebitPaymentProcessor(PaymentProcessor):
+class DebitPaymentProcessor(PaymentProcessorSMS):
     def __init__(self, security_code: int):
         self.security_code = security_code
         self.verified = False
 
-        def auth_SMS(self, SMS_Code: int):
-            print("verifying SMS code: {SMS_Code}".format(SMS_Code=SMS_Code))
-            if self.security_code == SMS_Code:
-                self.verified = True
-            else:
-                self.verified = False
+    def auth_SMS(self, SMS_Code: int):
+        print(f"verifying SMS code: {SMS_Code}")
+        if self.security_code == SMS_Code:
+            self.verified = True
+        else:
+            self.verified = False
 
     def pay(self, order_input: Order):
+        if not self.verified:
+            print("Payment not verified")
+            return
         print("Processing debit payment type")
         print("Verifying security code: {security_code}".format(security_code=self.security_code))
         print("Payment successful")
@@ -72,21 +76,25 @@ class CreditPaymentProcessor(PaymentProcessor):
         order_input.status = "paid"
 
 
-class PaypalPaymentProcessor(PaymentProcessor):
+class PaypalPaymentProcessor(PaymentProcessorSMS):
     def __init__(self, email_address: str):
+        self.security_code = None
         self.email_address = email_address
         self.verified = False
 
-        def auth_SMS(self, SMS_Code: int):
-            print("verifying SMS code: {SMS_Code}".format(SMS_Code=SMS_Code))
-            if self.security_code == SMS_Code:
-                self.verified = True
-            else:
-                self.verified = False
+    def auth_SMS(self, SMS_Code: int):
+        print(f"verifying SMS code: {SMS_Code}")
+        if self.security_code == SMS_Code:
+            self.verified = True
+        else:
+            self.verified = False
 
     def pay(self, order_input: Order):
+        if not self.verified:
+            print("Payment not verified")
+            return
         print("Processing paypal payment type")
-        print("Verifying security code: {email_address}".format(email_address=self.email_address))
+        print(f"Verifying security code: {self.security_code}")
         print("Payment successful")
         order_input.status = "paid"
 
@@ -103,3 +111,6 @@ if __name__ == "__main__":
 
     print(order.total_price())
     print(order.status)
+
+
+
