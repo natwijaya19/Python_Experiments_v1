@@ -1,4 +1,4 @@
-from project_structure_fix_ImportModuleNotFoundError import run as r
+from project_structure6 import run as r
 
 r.run()
 

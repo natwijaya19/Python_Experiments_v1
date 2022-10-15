@@ -1,6 +1,6 @@
-from project_structure_fix_ImportModuleNotFoundError.email.email import Email
-from project_structure_fix_ImportModuleNotFoundError.prime import constants as c
-from project_structure_fix_ImportModuleNotFoundError.prime import prime
+from project_structure6.email.email import Email
+from project_structure6.prime import constants as c
+from project_structure6.prime import prime
 
 
 def run():
